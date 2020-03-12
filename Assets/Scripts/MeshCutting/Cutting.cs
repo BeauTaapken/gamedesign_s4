@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using EzySlice;
 using UnityEngine;
 
@@ -18,13 +19,16 @@ public class Cutting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, Camera.main.transform.rotation, .2f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation, 0.2f);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, Camera.main.transform.rotation, 0.2f);
         RotatePlane();
     }
 
     public void Slice()
     {
         Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(5, 0.1f, 5), cutPlane.rotation, layerMask);
+
+        Debug.Log(hits);
 
         if (hits.Length <= 0)
             return;
@@ -45,18 +49,21 @@ public class Cutting : MonoBehaviour
 
     public void AddHullComponents(GameObject go)
     {
-        go.layer = 9;
+        Debug.Log("needed layer: " + Mathf.Log(layerMask.value, 2));
+        go.layer = (int) Mathf.Log(layerMask.value, 2);
+        Debug.Log("layer: " + go.layer);
         Rigidbody rb = go.AddComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         MeshCollider collider = go.AddComponent<MeshCollider>();
         collider.convex = true;
+
+        Destroy(go, 2.0f);
 
         rb.AddExplosionForce(100, go.transform.position, 20);
     }
 
     public SlicedHull SliceObject(GameObject obj, Material crossSectionMaterial = null)
     {
-        // slice the provided object using the transforms of this object
         if (obj.GetComponent<MeshFilter>() == null)
             return null;
 
