@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Controllbox : MonoBehaviour
 {
+    public GameObject withCuttingScript;
+
+    private Cutting cutting;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        cutting = withCuttingScript.GetComponent<Cutting>();
     }
 
     // Update is called once per frame
@@ -23,6 +27,7 @@ public class Controllbox : MonoBehaviour
             Debug.Log(vertical);
             if (Mathf.Approximately(horizontal, 0.0f) && Mathf.Approximately(vertical, 0.0f))
             {
+                cutting.Slice();
                 Debug.Log("Now going forward");
             }
             else
