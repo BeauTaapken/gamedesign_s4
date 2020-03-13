@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 921810806039474503}
   - component: {fileID: 921810806039474502}
   - component: {fileID: 921810806039474501}
+  - component: {fileID: 7503150088619047214}
   m_Layer: 0
   m_Name: Cutting
   m_TagString: Untagged
@@ -96,3 +97,19 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+  deadzone: 1.8
+  controllerRotation: 360
+  destroyTime: 2
+--- !u!114 &7503150088619047214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921810806039474499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9cccbaa5b757af468ef58c519284756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  withCuttingScript: {fileID: 921810806039474499}
