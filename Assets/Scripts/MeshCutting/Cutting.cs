@@ -14,7 +14,6 @@ public class Cutting : MonoBehaviour
     public float deadzone;
     [Range(0, 360)]
     public int controllerRotation;
-
     public float destroyTime;
 
     private float horizontal;
@@ -92,7 +91,7 @@ public class Cutting : MonoBehaviour
         }
         else
         {
-            cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") - Input.GetAxis("Mouse Y") * 5);
+            cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") * 5);
         }
     }
 }
