@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using EzySlice;
@@ -9,6 +10,15 @@ public class Cutting : MonoBehaviour
     public Transform cutPlane;
     public Material crossMaterial;
     public LayerMask layerMask;
+    [Range(0.0f, 4.0f)]
+    public float deadzone;
+    [Range(0, 360)]
+    public int controllerRotation;
+
+    public float destroyTime;
+
+    private float horizontal;
+    private float vertical;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +30,6 @@ public class Cutting : MonoBehaviour
     void Update()
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation, 0.2f);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, Camera.main.transform.rotation, 0.2f);
         RotatePlane();
     }
 
@@ -49,15 +58,14 @@ public class Cutting : MonoBehaviour
 
     public void AddHullComponents(GameObject go)
     {
-        Debug.Log("needed layer: " + Mathf.Log(layerMask.value, 2));
+        //Magic number here, this is to get the correct number of the layer so we don't have to have an extra value to set the correct layer to the object
         go.layer = (int) Mathf.Log(layerMask.value, 2);
-        Debug.Log("layer: " + go.layer);
         Rigidbody rb = go.AddComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         MeshCollider collider = go.AddComponent<MeshCollider>();
         collider.convex = true;
 
-        Destroy(go, 2.0f);
+        Destroy(go, destroyTime);
 
         rb.AddExplosionForce(100, go.transform.position, 20);
     }
@@ -72,6 +80,19 @@ public class Cutting : MonoBehaviour
 
     public void RotatePlane()
     {
-        cutPlane.eulerAngles += new Vector3(0, 0, -Input.GetAxis("Mouse X") * 5);
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            horizontal = Input.GetAxis("Mouse X");
+            vertical = Input.GetAxis("Mouse Y");
+            Debug.Log(horizontal + "\n" + vertical);
+            if (horizontal > deadzone || horizontal < -deadzone || vertical > deadzone || vertical < -deadzone)
+            {
+                cutPlane.transform.localEulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
+            }
+        }
+        else
+        {
+            cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") - Input.GetAxis("Mouse Y") * 5);
+        }
     }
 }
