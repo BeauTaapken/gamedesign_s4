@@ -36,33 +36,48 @@ public class Cutting : MonoBehaviour
     {
         Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(5, 0.1f, 5), cutPlane.rotation, layerMask);
 
-        Debug.Log(hits);
-
         if (hits.Length <= 0)
+        {
             return;
+        }
 
         for (int i = 0; i < hits.Length; i++)
         {
             SlicedHull hull = SliceObject(hits[i].gameObject, crossMaterial);
             if (hull != null)
             {
-                GameObject bottom = hull.CreateLowerHull(hits[i].gameObject, crossMaterial);
-                GameObject top = hull.CreateUpperHull(hits[i].gameObject, crossMaterial);
+                GameObject bottom = hull.createHull(hits[i].gameObject, crossMaterial, false);
+                GameObject top = hull.createHull(hits[i].gameObject, crossMaterial, true);
                 AddHullComponents(bottom);
                 AddHullComponents(top);
-                Destroy(hits[i].gameObject);
+                if (hits[i].gameObject.transform.parent)
+                {
+                    Destroy(hits[i].gameObject.transform.parent.gameObject);
+                }
+                else
+                {
+                    Destroy(hits[i].gameObject);
+                }
             }
         }
     }
 
     public void AddHullComponents(GameObject go)
     {
-        //Magic number here, this is to get the correct number of the layer so we don't have to have an extra value to set the correct layer to the object
-        go.layer = (int) Mathf.Log(layerMask.value, 2);
+        //(int) Mathf.Log(layerMask.value, 2) returns the correct layer value of the layermask we want to use.
+        go.layer = (int)Mathf.Log(layerMask.value, 2);
         Rigidbody rb = go.AddComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
-        MeshCollider collider = go.AddComponent<MeshCollider>();
-        collider.convex = true;
+        MeshCollider meshCollider = go.AddComponent<MeshCollider>();
+        meshCollider.convex = true;
+        meshCollider.sharedMesh = go.GetComponent<SkinnedMeshRenderer>().sharedMesh;
+
+        ParticleSystem ps = go.AddComponent<ParticleSystem>();
+
+        ParticleSystem.MainModule main = ps.main;
+        main.startColor = new Color(255, 0, 0);
+        ParticleSystemRenderer r = ps.GetComponent<ParticleSystemRenderer>();
+        r.material = crossMaterial;
 
         Destroy(go, destroyTime);
 
@@ -71,7 +86,7 @@ public class Cutting : MonoBehaviour
 
     public SlicedHull SliceObject(GameObject obj, Material crossSectionMaterial = null)
     {
-        if (obj.GetComponent<MeshFilter>() == null)
+        if (obj.GetComponent<MeshFilter>() == null && obj.GetComponent<SkinnedMeshRenderer>() == null)
             return null;
 
         return obj.Slice(cutPlane.position, cutPlane.up, crossSectionMaterial);
@@ -83,15 +98,14 @@ public class Cutting : MonoBehaviour
         {
             horizontal = Input.GetAxis("Mouse X");
             vertical = Input.GetAxis("Mouse Y");
-            Debug.Log(horizontal + "\n" + vertical);
             if (horizontal > deadzone || horizontal < -deadzone || vertical > deadzone || vertical < -deadzone)
             {
                 cutPlane.transform.localEulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
             }
         }
-        else
-        {
-            cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") * 5);
-        }
+        //else
+        //{
+        //    cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") * 5);
+        //}
     }
 }

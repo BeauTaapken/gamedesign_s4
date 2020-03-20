@@ -66,27 +66,20 @@ namespace EzySlice {
 		 * See -> Slice(Mesh, Plane) for more info
 		 */
         public static SlicedHull Slice(GameObject obj, Plane pl, TextureRegion crossRegion, Material crossMaterial) {
-			MeshFilter filter = obj.GetComponent<MeshFilter>();
 
-            // cannot continue without a proper filter
-            if (filter == null) {
-                Debug.LogWarning("EzySlice::Slice -> Provided GameObject must have a MeshFilter Component.");
-
-                return null;
-            }
-
-            MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+            SkinnedMeshRenderer renderer = obj.GetComponent<SkinnedMeshRenderer>();
 
             // cannot continue without a proper renderer
             if (renderer == null) {
-                Debug.LogWarning("EzySlice::Slice -> Provided GameObject must have a MeshRenderer Component.");
+                Debug.LogWarning("EzySlice::Slice -> Provided GameObject must have a SkinnedMeshRenderer Component.");
 
                 return null;
             }
 
             Material[] materials = renderer.sharedMaterials;
 
-            Mesh mesh = filter.sharedMesh;
+            //Mesh mesh = filter.sharedMesh;
+            Mesh mesh = renderer.sharedMesh;
 
             // cannot slice a mesh that doesn't exist
             if (mesh == null) {

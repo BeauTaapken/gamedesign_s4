@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controllbox : MonoBehaviour
+public class WeaponAttack : MonoBehaviour
 {
     public GameObject weapon;
-    public GameObject withCuttingScript;
-    public string animationName;
+    public GameObject CuttingPlane;
+    public AnimationClip animationClip;
+    public bool canCut;
 
     private Cutting cutting;
     private Animator animator;
@@ -15,7 +16,7 @@ public class Controllbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cutting = withCuttingScript.GetComponent<Cutting>();
+        cutting = CuttingPlane.GetComponent<Cutting>();
         animator = weapon.GetComponent<Animator>();
         animator.SetBool("isSlashing", false);
     }
@@ -23,11 +24,14 @@ public class Controllbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Approximately(Input.GetAxis("Fire1"), 1) && !isSlashing && !animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        if (Mathf.Approximately(Input.GetAxis("Fire1"), 1) && !isSlashing && !animator.GetCurrentAnimatorStateInfo(0).IsName(animationClip.name))
         {
             isSlashing = true;
             animator.SetBool("isSlashing", true);
-            cutting.Slice();
+            if (canCut)
+            {
+                cutting.Slice();
+            }
         }
 
         if (Mathf.Approximately(Input.GetAxis("Fire1"), 0) && isSlashing)
