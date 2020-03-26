@@ -28,13 +28,12 @@ public class Cutting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation, 0.2f);
         RotatePlane();
     }
 
     public void Slice()
     {
-        Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(5, 0.1f, 5), cutPlane.rotation, layerMask);
+        Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(1.5f, 0.1f, 1.5f), cutPlane.rotation, layerMask);
 
         if (hits.Length <= 0)
         {
@@ -101,7 +100,11 @@ public class Cutting : MonoBehaviour
             vertical = Input.GetAxis("Mouse Y");
             if (horizontal > deadzone || horizontal < -deadzone || vertical > deadzone || vertical < -deadzone)
             {
-                cutPlane.transform.localEulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
+                cutPlane.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
+            }
+            else
+            {
+                cutPlane.transform.localEulerAngles = new Vector3(0, 0, cutPlane.localEulerAngles.z);
             }
         }
         //else
