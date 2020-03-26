@@ -72,7 +72,7 @@ public class Cutting : MonoBehaviour
     public void AddHullComponents(GameObject go)
     {
         //(int) Mathf.Log(layerMask.value, 2) returns the correct layer value of the layermask we want to use.
-        go.layer = (int)Mathf.Log(layerMask.value, 2);
+        //go.layer = (int)Mathf.Log(layerMask.value, 2);
         Rigidbody rb = go.AddComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         MeshCollider meshCollider = go.AddComponent<MeshCollider>();
