@@ -49,10 +49,12 @@ public class Cutting : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
+            //Remove getbodymesh function if old way is possible(bones don't move on their own)
             GameObject obj = GetBodyMesh(hits[i].gameObject);
             SlicedHull hull = SliceObject(obj, crossMaterial);
             if (hull != null)
             {
+                //Remove boneLocation from creathull function if old way is possible(bones don't move on their own)
                 GameObject bottom = hull.createHull(hits[i].gameObject, obj, crossMaterial, false);
                 GameObject top = hull.createHull(hits[i].gameObject, obj, crossMaterial, true);
                 AddHullComponents(bottom);
