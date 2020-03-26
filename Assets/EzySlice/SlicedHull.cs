@@ -29,7 +29,14 @@ namespace EzySlice {
             }
 
 			if (newObject != null) {
-				newObject.transform.position = boneLocation.transform.position;
+                if (boneLocation != null)
+                {
+                    newObject.transform.position = boneLocation.transform.position;
+                }
+                else
+                {
+                    newObject.transform.position = original.transform.position;
+                }
 				newObject.transform.rotation = original.transform.rotation;
 				newObject.transform.localScale = original.transform.localScale;
 

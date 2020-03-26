@@ -49,8 +49,16 @@ public class Cutting : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
+            GameObject obj;
             //Remove getbodymesh function if old way is possible(bones don't move on their own)
-            GameObject obj = GetBodyMesh(hits[i].gameObject);
+            if(hits[i].GetComponent<SkinnedMeshRenderer>())
+            {
+                obj = hits[i].gameObject;
+            }
+            else
+            {
+                obj = GetBodyMesh(hits[i].gameObject);
+            }
             SlicedHull hull = SliceObject(obj, crossMaterial);
             if (hull != null)
             {
@@ -74,7 +82,7 @@ public class Cutting : MonoBehaviour
     public void AddHullComponents(GameObject go)
     {
         //(int) Mathf.Log(layerMask.value, 2) returns the correct layer value of the layermask we want to use.
-        //go.layer = (int)Mathf.Log(layerMask.value, 2);
+        go.layer = (int)Mathf.Log(layerMask.value, 2);
         Rigidbody rb = go.AddComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         MeshCollider meshCollider = go.AddComponent<MeshCollider>();
