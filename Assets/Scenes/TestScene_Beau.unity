@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0c39c31525591a44db3f44e321868e7d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1459,11 +1459,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3662925087775077904, guid: cf819accd2042b94cbee78dfe2aae7f7,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 110
-      objectReference: {fileID: 0}
     - target: {fileID: 5854790223433774743, guid: cf819accd2042b94cbee78dfe2aae7f7,
         type: 3}
       propertyPath: m_Name
@@ -1523,6 +1518,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285440373222839763, guid: cf819accd2042b94cbee78dfe2aae7f7,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662925087775077904, guid: cf819accd2042b94cbee78dfe2aae7f7,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 110
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf819accd2042b94cbee78dfe2aae7f7, type: 3}

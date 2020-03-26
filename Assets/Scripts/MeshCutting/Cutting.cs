@@ -28,7 +28,14 @@ public class Cutting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePlane();
+        if (Mathf.Approximately(Input.GetAxis("Fire2"), 1))
+        {
+            RotatePlane();
+        }
+        else
+        {
+            resetCutPlaneXY();
+        }
     }
 
     public void Slice()
@@ -104,13 +111,18 @@ public class Cutting : MonoBehaviour
             }
             else
             {
-                cutPlane.transform.localEulerAngles = new Vector3(0, 0, cutPlane.localEulerAngles.z);
+                resetCutPlaneXY();
             }
         }
         //else
         //{
         //    cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") * 5);
         //}
+    }
+
+    public void resetCutPlaneXY()
+    {
+        cutPlane.transform.localEulerAngles = new Vector3(0, 0, cutPlane.localEulerAngles.z);
     }
 
     public GameObject GetBodyMesh(GameObject obj)
