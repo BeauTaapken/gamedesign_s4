@@ -17,7 +17,7 @@ namespace EzySlice {
 			this.lower_hull = lowerHull;
 		}
 
-        public GameObject createHull(GameObject original, Material crossSectionMat, bool isUpperHull) {
+        public GameObject createHull(GameObject boneLocation, GameObject original, Material crossSectionMat, bool isUpperHull) {
             GameObject newObject;
             if (isUpperHull)
             {
@@ -29,7 +29,7 @@ namespace EzySlice {
             }
 
 			if (newObject != null) {
-				newObject.transform.position = original.transform.position;
+				newObject.transform.position = boneLocation.transform.position;
 				newObject.transform.rotation = original.transform.rotation;
 				newObject.transform.localScale = original.transform.localScale;
 

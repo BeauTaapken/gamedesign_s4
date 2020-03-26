@@ -43,20 +43,21 @@ public class Cutting : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
-            SlicedHull hull = SliceObject(hits[i].gameObject, crossMaterial);
+            GameObject obj = GetBodyMesh(hits[i].gameObject);
+            SlicedHull hull = SliceObject(obj, crossMaterial);
             if (hull != null)
             {
-                GameObject bottom = hull.createHull(hits[i].gameObject, crossMaterial, false);
-                GameObject top = hull.createHull(hits[i].gameObject, crossMaterial, true);
+                GameObject bottom = hull.createHull(hits[i].gameObject, obj, crossMaterial, false);
+                GameObject top = hull.createHull(hits[i].gameObject, obj, crossMaterial, true);
                 AddHullComponents(bottom);
                 AddHullComponents(top);
-                if (hits[i].gameObject.transform.parent)
+                if (obj.transform.parent)
                 {
-                    Destroy(hits[i].gameObject.transform.parent.gameObject);
+                    Destroy(obj.transform.parent.gameObject);
                 }
                 else
                 {
-                    Destroy(hits[i].gameObject);
+                    Destroy(obj);
                 }
             }
         }
@@ -107,5 +108,19 @@ public class Cutting : MonoBehaviour
         //{
         //    cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") * 5);
         //}
+    }
+
+    public GameObject GetBodyMesh(GameObject obj)
+    {
+        obj = obj.transform.parent.gameObject;
+        foreach (Transform child in obj.transform)
+        {
+            if (child.name == "Body_mesh")
+            {
+                return child.gameObject;
+            }
+        }
+
+        return null;
     }
 }
