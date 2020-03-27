@@ -4,44 +4,38 @@ using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
 
+
 public class SpawnManager : MonoBehaviour
 {
-    public Transform Plane;
+    public Transform plane;
+
     public List<GameObject> SpawnableMonsters;
     public List<GameObject> SpawnableBosses;
+
     public int MonsterAmount = 3;
     public int BossAmount = 0;
+
     public TextMeshProUGUI tmpMonstersSlain;
     public TextMeshProUGUI tmpBossesSlain;
 
-    private float _planeX;
-    private float _planeZ;
+    public Spawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
-        Mesh planeMesh = Plane.GetComponent<MeshFilter>().mesh;
-        _planeX = planeMesh.bounds.size.x;
-        _planeZ = planeMesh.bounds.size.z;
-        spawn(SpawnableMonsters);
-        //spawn(SpawnableBosses);
-        tmpMonstersSlain.text = MonsterAmount + "/" + MonsterAmount;
+        Mesh planeMesh = plane.GetComponent<MeshFilter>().mesh;
+
+        spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x, planeMesh.bounds.size.z, tmpMonstersSlain, tmpBossesSlain);
+
+        spawner.spawn(SpawnableMonsters, SpawnableBosses);
     }
 
-    private void spawn(List<GameObject> list)
+    void Update()
     {
-        for (int monsterIndex = 0; monsterIndex < MonsterAmount; monsterIndex++)
+        if (spawner.GetLivingMonsters() == 0 && spawner.GetLivingBosses() == 0)
         {
-            int monsterNumber = Random.Range(0, list.Count);
-            
-            float _randomX = Random.Range(-_planeX / 2.0f, _planeX / 2.0f);
-            float _randomZ = Random.Range(-_planeZ / 2.0f, _planeZ / 2.0f);
-
-            Vector3 spawnLocation = new Vector3(_randomX, 0.0f, _randomZ);
-
-            GameObject obj = Instantiate(list[monsterNumber], spawnLocation, Quaternion.identity, Plane);
-
-            obj.transform.parent = null;
+            spawner.UpMonsterAmount(3);
+            spawner.spawn(SpawnableMonsters, SpawnableBosses);
         }
     }
 }

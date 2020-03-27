@@ -363,7 +363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sensitivity: 5
-  Smoothing: 2
   minimumY: -40
   maximumY: 40
 --- !u!1 &3633087536923818629
@@ -682,6 +681,10 @@ MonoBehaviour:
   deadzone: 1.8
   controllerRotation: 180
   destroyTime: 5
+  LivingCounterUiMonster: {fileID: 11400000, guid: fe03b029e0835a14695ac6101145cc8c,
+    type: 2}
+  LivingCounterUiBoss: {fileID: 11400000, guid: 6b0f3332b1b836643be6a7752821288b,
+    type: 2}
 --- !u!54 &3633087537315848129
 Rigidbody:
   m_ObjectHideFlags: 0

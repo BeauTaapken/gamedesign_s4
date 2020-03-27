@@ -15,6 +15,8 @@ public class Cutting : MonoBehaviour
     [Range(0, 360)]
     public int controllerRotation;
     public float destroyTime;
+    public LivingCounterUI LivingCounterUiMonster;
+    public LivingCounterUI LivingCounterUiBoss;
 
     private float horizontal;
     private float vertical;
@@ -64,6 +66,14 @@ public class Cutting : MonoBehaviour
                 if (obj.transform.parent)
                 {
                     Destroy(obj.transform.parent.gameObject);
+                    if (obj.transform.parent.tag == "Monster")
+                    {
+                        LivingCounterUiMonster.RemoveMonster();
+                    }
+                    else if (obj.transform.parent.tag == "Boss")
+                    {
+                        LivingCounterUiBoss.RemoveMonster();
+                    }
                 }
                 else
                 {
