@@ -1327,7 +1327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sensitivity: 5
-  Smoothing: 2
   minimumY: -60
   maximumY: 60
 --- !u!1 &2093339062
@@ -1553,6 +1552,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633087536923818632, guid: d909d52fc2ff58b458beb0fa9c8af5d2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633087537312484438, guid: d909d52fc2ff58b458beb0fa9c8af5d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d909d52fc2ff58b458beb0fa9c8af5d2, type: 3}
