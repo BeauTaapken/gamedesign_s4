@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ddeaac1cb9d5f4a887a0fe925f114f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Plane: {fileID: 0}
+  plane: {fileID: 0}
   SpawnableMonsters:
   - {fileID: 6316806758119807560, guid: e664a0babffc284438dd1ece63d3a812, type: 3}
   SpawnableBosses: []
@@ -51,3 +51,4 @@ MonoBehaviour:
   BossAmount: 0
   tmpMonstersSlain: {fileID: 0}
   tmpBossesSlain: {fileID: 0}
+  spawner: {fileID: 11400000, guid: eb41ba90d89a5674399fe0880f0e8967, type: 2}
