@@ -6,14 +6,24 @@ public class Movement : MonoBehaviour
 {
     public float speed = 12f;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = Input.GetAxis("Horizontal") * speed;
+        float z = Input.GetAxis("Vertical") * speed;
 
         Vector3 move = new Vector3(x, 0, z);
    
-        transform.Translate(move * speed * Time.deltaTime);
-        
+        transform.Translate(move * Time.deltaTime);
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
     }
 }
