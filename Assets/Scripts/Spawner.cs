@@ -62,7 +62,7 @@ public class Spawner : ScriptableObject
 
             Vector3 spawnLocation = new Vector3(_randomX, 0.0f, _randomZ);
 
-            GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity, plane);
+            GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity);
 
             obj.transform.parent = null;
         }
