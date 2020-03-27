@@ -111,23 +111,16 @@ public class Cutting : MonoBehaviour
 
     public void RotatePlane()
     {
-        if (Input.GetJoystickNames().Length > 0)
+        horizontal = Input.GetAxis("Mouse X");
+        vertical = Input.GetAxis("Mouse Y");
+        if (horizontal > deadzone || horizontal < -deadzone || vertical > deadzone || vertical < -deadzone)
         {
-            horizontal = Input.GetAxis("Mouse X");
-            vertical = Input.GetAxis("Mouse Y");
-            if (horizontal > deadzone || horizontal < -deadzone || vertical > deadzone || vertical < -deadzone)
-            {
-                cutPlane.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
-            }
-            else
-            {
-                resetCutPlaneXY();
-            }
+            cutPlane.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
         }
-        //else
-        //{
-        //    cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") * 5);
-        //}
+        else
+        {
+            resetCutPlaneXY();
+        }
     }
 
     public void resetCutPlaneXY()
