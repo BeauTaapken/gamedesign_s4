@@ -2259,9 +2259,10 @@ GameObject:
   - component: {fileID: 6316806758119807562}
   - component: {fileID: 6316806758119807561}
   - component: {fileID: 6316806758119807563}
-  - component: {fileID: 1927562868321118775}
   - component: {fileID: 5992273193751888104}
   - component: {fileID: 2239212724846773096}
+  - component: {fileID: 1927562868321118775}
+  - component: {fileID: 5675847090164291620}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Monster
@@ -2323,18 +2324,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &1927562868321118775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6316806758119807560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b43511fd205fd4682786c36d94b58c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &5992273193751888104
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2448,6 +2437,31 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bc4c2a159f0a54c848b39ae83f50bbf8, type: 3}
   - {fileID: 8300000, guid: e77848cfc843c47fea2a00d6937acb12, type: 3}
   AudioSource: {fileID: 5992273193751888104}
+--- !u!114 &1927562868321118775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316806758119807560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b43511fd205fd4682786c36d94b58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5675847090164291620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316806758119807560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12e7e4dcbb15694abf416d97de81660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LivingCounterUi: {fileID: 11400000, guid: fe03b029e0835a14695ac6101145cc8c, type: 2}
 --- !u!1 &6316806758192373870
 GameObject:
   m_ObjectHideFlags: 0

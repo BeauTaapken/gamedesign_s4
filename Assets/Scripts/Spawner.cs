@@ -57,6 +57,9 @@ public class Spawner : ScriptableObject
         {
             int monsterNumber = Random.Range(0, MonsterList.Count);
 
+            Debug.Log(_planeX);
+            Debug.Log(_planeZ);
+
             float _randomX = Random.Range(-_planeX / 2.0f, _planeX / 2.0f);
             float _randomZ = Random.Range(-_planeZ / 2.0f, _planeZ / 2.0f);
 
