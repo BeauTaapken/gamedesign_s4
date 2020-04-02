@@ -7,9 +7,11 @@ public class EnamyController : MonoBehaviour
 {
     public GameObject Player;
     public NavMeshAgent agent;
-    // Update is called once per frame
+
+
     void Update()
     {
-        agent.SetDestination(Player.transform.position);
+        //agent.SetDestination(Player.transform.position);
+        agent.SetDestination(Camera.main.transform.position);
     }
 }
