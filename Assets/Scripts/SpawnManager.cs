@@ -23,9 +23,9 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Mesh planeMesh = plane.GetComponent<MeshFilter>().mesh;
+        Collider planeMesh = plane.GetComponent<Collider>();
 
-        spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x - plane.position.x, planeMesh.bounds.size.z - plane.position.z, tmpMonstersSlain, tmpBossesSlain);
+        spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x, planeMesh.bounds.size.z, tmpMonstersSlain, tmpBossesSlain);
 
         spawner.spawn(SpawnableMonsters, SpawnableBosses);
     }

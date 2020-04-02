@@ -36,7 +36,7 @@ public class Cutting : MonoBehaviour
 
     public void Slice()
     {
-        Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(2.0f, 0.1f, 1.0f), cutPlane.rotation, layerMask);
+        Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(3.0f, 1.0f, 1.5f), cutPlane.rotation, layerMask);
 
         if (hits.Length <= 0)
         {

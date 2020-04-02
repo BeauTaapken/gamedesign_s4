@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 [CreateAssetMenu]
 
 public class Spawner : ScriptableObject
@@ -61,6 +64,9 @@ public class Spawner : ScriptableObject
 
             while (spawnLocation == Vector3.zero)
             {
+                Debug.Log(_planeX);
+                Debug.Log(_planeX);
+
                 float _randomX = Random.Range(-_planeX / 2.0f, _planeX / 2.0f);
                 float _randomZ = Random.Range(-_planeZ / 2.0f, _planeZ / 2.0f);
 
@@ -73,7 +79,7 @@ public class Spawner : ScriptableObject
                 }
             }
 
-            GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity, plane);
+            GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity);
 
             obj.transform.parent = null;
         }
