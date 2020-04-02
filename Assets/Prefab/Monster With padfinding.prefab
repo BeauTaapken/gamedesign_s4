@@ -14,7 +14,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 10
-  m_StoppingDistance: 1
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -46,7 +46,7 @@ PrefabInstance:
     - target: {fileID: 6316806758119807560, guid: e664a0babffc284438dd1ece63d3a812,
         type: 3}
       propertyPath: m_Name
-      value: Monster
+      value: Monster With padfinding
       objectReference: {fileID: 0}
     - target: {fileID: 6316806758119807562, guid: e664a0babffc284438dd1ece63d3a812,
         type: 3}
