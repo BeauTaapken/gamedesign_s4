@@ -30,21 +30,14 @@ public class LookAround : MonoBehaviour
         {
             float mouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
-
-            //rotationY += mouseY * Sensitivity * Time.deltaTime;
+            
             rotationY -= mouseY;
             rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-
-            //rotationX += mouseX * Sensitivity * Time.deltaTime;
 
             transform.localRotation = Quaternion.Euler(rotationY, 0.0f, 0.0f);
 
             character.transform.Rotate(Vector3.up * mouseX);
-
-            //transform.localRotation = Quaternion.AngleAxis(-rotationY, Vector3.right);
-
-            //character.transform.localRotation = Quaternion.AngleAxis(rotationX, character.transform.up);
+            
         }
-        
     }
 }

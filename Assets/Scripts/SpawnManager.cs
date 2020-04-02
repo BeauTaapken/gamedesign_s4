@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
     {
         Mesh planeMesh = plane.GetComponent<MeshFilter>().mesh;
 
-        spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x, planeMesh.bounds.size.z, tmpMonstersSlain, tmpBossesSlain);
+        spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x - plane.position.x, planeMesh.bounds.size.z - plane.position.z, tmpMonstersSlain, tmpBossesSlain);
 
         spawner.spawn(SpawnableMonsters, SpawnableBosses);
     }
