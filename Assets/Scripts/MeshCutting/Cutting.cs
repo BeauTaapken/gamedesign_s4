@@ -20,6 +20,8 @@ public class Cutting : MonoBehaviour
 
     private float horizontal;
     private float vertical;
+    private Vector3 center;
+    private Vector3 size;
 
     // Update is called once per frame
     void Update()
@@ -34,9 +36,20 @@ public class Cutting : MonoBehaviour
         }
     }
 
+    //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(center, size);
+    }
+
     public void Slice()
     {
-        Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(1.5f, 0.1f, 1.5f), cutPlane.rotation, layerMask);
+        center = cutPlane.position;
+        //center = new Vector3(cutPlane.position.x, cutPlane.position.y, cutPlane.position.z + 2);
+        size = new Vector3(2.0f, 0.1f, 1.0f);
+
+        Collider[] hits = Physics.OverlapBox(center, size, cutPlane.rotation, layerMask);
 
         if (hits.Length <= 0)
         {
