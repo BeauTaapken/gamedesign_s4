@@ -13,23 +13,27 @@ public class Spawner : ScriptableObject
     public LivingCounterUI LivingCounterUiBoss;
 
     public int maxMonsters;
-    public int MonsterAmount;
-    public int BossAmount;
-
+    public int maxBosses;
+    
     private Transform plane;
 
     private TextMeshProUGUI tmpCountDown;
+
+    private int MonsterAmount;
+    private int BossAmount;
 
     private float _planeX;
     private float _planeZ;
 
     private bool coroutineRunning = false;
 
-    public void Setup(Transform plane, float _planeX, float _planeZ, TextMeshProUGUI tmpMonstersSlain, TextMeshProUGUI tmpBossesSlain, TextMeshProUGUI tmpCountDown)
+    public void Setup(Transform plane, int MonsterAmount, int BossAmount, float _planeX, float _planeZ, TextMeshProUGUI tmpMonstersSlain, TextMeshProUGUI tmpBossesSlain, TextMeshProUGUI tmpCountDown)
     {
         this.plane = plane;
         this._planeX = _planeX;
         this._planeZ = _planeZ;
+        this.MonsterAmount = MonsterAmount;
+        this.BossAmount = BossAmount;
         this.tmpCountDown = tmpCountDown;
         LivingCounterUiMonster.SetTextMeshPro(tmpMonstersSlain);
         LivingCounterUiBoss.SetTextMeshPro(tmpBossesSlain);
@@ -75,42 +79,19 @@ public class Spawner : ScriptableObject
                 yield return new WaitForSeconds(0.1f);
             }
 
-            int monsterNumber = Random.Range(0, MonsterList.Count);
-
-            Vector3 spawnLocation = Vector3.zero;
-
-            while (spawnLocation == Vector3.zero)
-            {
-                float _randomX = Random.Range(-_planeX / 3.0f, _planeX /3.0f);
-                float _randomZ = Random.Range(-_planeZ / 3.0f, _planeZ / 3.0f);
-
-                Vector3 randomLocation = new Vector3(_randomX, 0.0f, _randomZ);
-                spawnLocation = randomLocation;
-
-                if (Physics.OverlapSphere(randomLocation, 2.0f).Length <= 1)
-                {
-                    spawnLocation = randomLocation;
-                }
-            }
-
-            GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity);
-
-            obj.transform.parent = null;
+            spawnMonsters(MonsterList);
         }
 
-        //for (int bossIndex = 0; bossIndex < BossAmount; bossIndex++)
-        //{
-        //    int bossNumber = Random.Range(0, BossList.Count);
+        for (int bossIndex = 0; bossIndex < BossAmount; bossIndex++)
+        {
+            while (GameObject.FindGameObjectsWithTag("Boss").Length >= maxBosses)
+            {
+                Debug.Log("waiting to spawn");
+                yield return new WaitForSeconds(0.1f);
+            }
 
-        //    float _randomX = Random.Range(-_planeX / 2.0f, _planeX / 2.0f);
-        //    float _randomZ = Random.Range(-_planeZ / 2.0f, _planeZ / 2.0f);
-
-        //    Vector3 spawnLocation = new Vector3(_randomX, 0.0f, _randomZ);
-
-        //    GameObject obj = Instantiate(BossList[bossNumber], spawnLocation, Quaternion.identity, plane);
-
-        //    obj.transform.parent = null;
-        //}
+            spawnMonsters(BossList);
+        }
 
         yield return null;
         coroutineRunning = false;
@@ -130,5 +111,30 @@ public class Spawner : ScriptableObject
     public bool isCoroutineRunning()
     {
         return coroutineRunning;
+    }
+
+    private void spawnMonsters(List<GameObject> MonsterList)
+    {
+        int monsterNumber = Random.Range(0, MonsterList.Count);
+
+        Vector3 spawnLocation = Vector3.zero;
+
+        while (spawnLocation == Vector3.zero)
+        {
+            float _randomX = Random.Range(-_planeX / 3.0f, _planeX / 3.0f);
+            float _randomZ = Random.Range(-_planeZ / 3.0f, _planeZ / 3.0f);
+
+            Vector3 randomLocation = new Vector3(_randomX, 0.0f, _randomZ);
+            spawnLocation = randomLocation;
+
+            if (Physics.OverlapSphere(randomLocation, 2.0f).Length <= 1)
+            {
+                spawnLocation = randomLocation;
+            }
+        }
+
+        GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity);
+
+        obj.transform.parent = null;
     }
 }
