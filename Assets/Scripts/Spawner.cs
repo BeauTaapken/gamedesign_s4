@@ -57,15 +57,23 @@ public class Spawner : ScriptableObject
         {
             int monsterNumber = Random.Range(0, MonsterList.Count);
 
-            Debug.Log(_planeX);
-            Debug.Log(_planeZ);
+            Vector3 spawnLocation = Vector3.zero;
 
-            float _randomX = Random.Range(-_planeX / 2.0f, _planeX / 2.0f);
-            float _randomZ = Random.Range(-_planeZ / 2.0f, _planeZ / 2.0f);
+            while (spawnLocation == Vector3.zero)
+            {
+                float _randomX = Random.Range(-_planeX / 2.0f, _planeX / 2.0f);
+                float _randomZ = Random.Range(-_planeZ / 2.0f, _planeZ / 2.0f);
 
-            Vector3 spawnLocation = new Vector3(_randomX, 0.0f, _randomZ);
+                Vector3 randomLocation = new Vector3(_randomX, 0.0f, _randomZ);
+                spawnLocation = randomLocation;
 
-            GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity);
+                if (Physics.OverlapSphere(randomLocation, 2.0f).Length <= 1)
+                {
+                    spawnLocation = randomLocation;
+                }
+            }
+
+            GameObject obj = Instantiate(MonsterList[monsterNumber], spawnLocation, Quaternion.identity, plane);
 
             obj.transform.parent = null;
         }
