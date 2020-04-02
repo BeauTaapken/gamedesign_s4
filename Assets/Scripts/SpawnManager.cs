@@ -12,9 +12,6 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> SpawnableMonsters;
     public List<GameObject> SpawnableBosses;
 
-    public int MonsterAmount = 3;
-    public int BossAmount = 0;
-
     public TextMeshProUGUI tmpMonstersSlain;
     public TextMeshProUGUI tmpBossesSlain;
     public TextMeshProUGUI tmpCountDown;
@@ -26,7 +23,7 @@ public class SpawnManager : MonoBehaviour
     {
         Collider planeMesh = plane.GetComponent<Collider>();
 
-        spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x, planeMesh.bounds.size.z, tmpMonstersSlain, tmpBossesSlain, tmpCountDown);
+        spawner.Setup(plane, planeMesh.bounds.size.x, planeMesh.bounds.size.z, tmpMonstersSlain, tmpBossesSlain, tmpCountDown);
 
         StartCoroutine(spawner.spawn(SpawnableMonsters, SpawnableBosses));
     }
