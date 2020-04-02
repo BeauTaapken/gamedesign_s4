@@ -15,9 +15,9 @@ TagManager:
   - 
   - 
   - Sliceable
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Wall
   - 
   - 
   - 
