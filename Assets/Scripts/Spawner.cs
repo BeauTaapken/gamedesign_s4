@@ -14,19 +14,24 @@ public class Spawner : ScriptableObject
 
     private Transform plane;
 
+    private TextMeshProUGUI tmpCountDown;
+
     private int MonsterAmount;
     private int BossAmount;
 
     private float _planeX;
     private float _planeZ;
 
-    public void Setup(Transform plane, int MonsterAmount, int BossAmount, float _planeX, float _planeZ, TextMeshProUGUI tmpMonstersSlain, TextMeshProUGUI tmpBossesSlain)
+    private bool coroutineRunning = false;
+
+    public void Setup(Transform plane, int MonsterAmount, int BossAmount, float _planeX, float _planeZ, TextMeshProUGUI tmpMonstersSlain, TextMeshProUGUI tmpBossesSlain, TextMeshProUGUI tmpCountDown)
     {
         this.plane = plane;
         this.MonsterAmount = MonsterAmount;
         this.BossAmount = BossAmount;
         this._planeX = _planeX;
         this._planeZ = _planeZ;
+        this.tmpCountDown = tmpCountDown;
         LivingCounterUiMonster.SetTextMeshPro(tmpMonstersSlain);
         LivingCounterUiBoss.SetTextMeshPro(tmpBossesSlain);
     }
@@ -43,17 +48,24 @@ public class Spawner : ScriptableObject
 
     public void UpMonsterAmount(int ExtraMonsters)
     {
-        MonsterAmount += ExtraMonsters;
+        MonsterAmount = MonsterAmount * ExtraMonsters;
     }
 
     public void UpBossAmount(int ExtraBosses)
     {
         BossAmount += ExtraBosses;
     }
-
-    //TODO change to IEnumerator so it can be yielded to have a countdown timer for the player to know when new monsters spawn
-    public void spawn(List<GameObject> MonsterList, List<GameObject> BossList)
+    
+    public IEnumerator spawn(List<GameObject> MonsterList, List<GameObject> BossList)
     {
+        coroutineRunning = true;
+        for (int i = 3; i > 0; i--)
+        {
+            SetCountDown(i);
+            yield return new WaitForSeconds(1);
+        }
+        tmpCountDown.text = String.Empty;
+
         SetCounters();
 
         for (int monsterIndex = 0; monsterIndex < MonsterAmount; monsterIndex++)
@@ -64,11 +76,8 @@ public class Spawner : ScriptableObject
 
             while (spawnLocation == Vector3.zero)
             {
-                Debug.Log(_planeX);
-                Debug.Log(_planeX);
-
-                float _randomX = Random.Range(-_planeX / 2.0f, _planeX / 2.0f);
-                float _randomZ = Random.Range(-_planeZ / 2.0f, _planeZ / 2.0f);
+                float _randomX = Random.Range(-_planeX / 3.0f, _planeX /3.0f);
+                float _randomZ = Random.Range(-_planeZ / 3.0f, _planeZ / 3.0f);
 
                 Vector3 randomLocation = new Vector3(_randomX, 0.0f, _randomZ);
                 spawnLocation = randomLocation;
@@ -97,11 +106,24 @@ public class Spawner : ScriptableObject
 
             obj.transform.parent = null;
         }
+
+        yield return null;
+        coroutineRunning = false;
     }
 
     private void SetCounters()
     {
         LivingCounterUiMonster.SetNumberOfMonsters(MonsterAmount);
         LivingCounterUiBoss.SetNumberOfMonsters(BossAmount);
+    }
+
+    private void SetCountDown(int second)
+    {
+        tmpCountDown.text = "Next wave in " + second;
+    }
+
+    public bool isCoroutineRunning()
+    {
+        return coroutineRunning;
     }
 }

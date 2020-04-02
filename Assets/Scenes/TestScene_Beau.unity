@@ -206,6 +206,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92d0a34f0b87fc94e8c460a8f1954f3d, type: 3}
+--- !u!114 &791094249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7090480130527732399, guid: 61b976c1cb28cb040810420cb5ef025e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4289057214792534817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1050026617
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +593,16 @@ PrefabInstance:
       propertyPath: plane
       value: 
       objectReference: {fileID: 1050026621}
+    - target: {fileID: 1353063912356278326, guid: 64b692861b3a60d4fbb51b09ff24feb6,
+        type: 3}
+      propertyPath: tmpCountDown
+      value: 
+      objectReference: {fileID: 791094249}
+    - target: {fileID: 1353063912356278326, guid: 64b692861b3a60d4fbb51b09ff24feb6,
+        type: 3}
+      propertyPath: MonsterAmount
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64b692861b3a60d4fbb51b09ff24feb6, type: 3}
 --- !u!1001 &3633087537407452578
@@ -844,6 +866,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289057213833083600, guid: 61b976c1cb28cb040810420cb5ef025e,
+        type: 3}
+      propertyPath: m_Name
+      value: LivingMonsters
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289057214789559436, guid: 61b976c1cb28cb040810420cb5ef025e,
+        type: 3}
+      propertyPath: m_Name
+      value: LivingBosses
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400754010647470382, guid: 61b976c1cb28cb040810420cb5ef025e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b976c1cb28cb040810420cb5ef025e, type: 3}
