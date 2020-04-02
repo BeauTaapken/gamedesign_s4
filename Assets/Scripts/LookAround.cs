@@ -6,38 +6,38 @@ using UnityEngine;
 public class LookAround : MonoBehaviour
 {
     
-    public float Sensitivity = 5.0f;
+    public float Sensitivity = 100.0f;
     public float minimumY;
     public float maximumY;
 
     private Vector2 _mouseLook;
     private Vector2 _smoothV;
 
-    private GameObject character;
+    private Transform character;
 
     private float rotationY;
     private float rotationX;
 
     void Start()
     {
-        character = gameObject.transform.parent.gameObject;
+        character = gameObject.transform.parent.gameObject.transform;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
         if (Mathf.Approximately(Input.GetAxis("Fire2"), 0f))
         {
-            Vector2 lookAround = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-            rotationY += lookAround.y * Sensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
+            
+            rotationY -= mouseY;
             rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
-            rotationX += lookAround.x * Sensitivity;
+            transform.localRotation = Quaternion.Euler(rotationY, 0.0f, 0.0f);
 
-            transform.localRotation = Quaternion.AngleAxis(-rotationY, Vector3.right);
-
-            character.transform.localRotation = Quaternion.AngleAxis(rotationX, character.transform.up);
+            character.transform.Rotate(Vector3.up * mouseX);
+            
         }
-        
     }
 }
