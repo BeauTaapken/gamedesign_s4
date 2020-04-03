@@ -25,10 +25,16 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         Collider planeMesh = plane.GetComponent<Collider>();
+        if (planeMesh.bounds.extents == Vector3.zero)
+        {
+            Debug.Log("plane needs a collider");
+        }
+        else
+        {
+            spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x, planeMesh.bounds.size.z, tmpMonstersSlain, tmpBossesSlain, tmpCountDown);
 
-        spawner.Setup(plane, MonsterAmount, BossAmount, planeMesh.bounds.size.x, planeMesh.bounds.size.z, tmpMonstersSlain, tmpBossesSlain, tmpCountDown);
-
-        StartCoroutine(spawner.spawn(SpawnableMonsters, SpawnableBosses));
+            StartCoroutine(spawner.spawn(SpawnableMonsters, SpawnableBosses));
+        }
     }
 
     void Update()
