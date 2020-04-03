@@ -17,6 +17,7 @@ public class Cutting : MonoBehaviour
     public float destroyTime;
     public LivingCounterUI LivingCounterUiMonster;
     public LivingCounterUI LivingCounterUiBoss;
+    public GameObject bloodParticles;
 
     private float horizontal;
     private float vertical;
@@ -92,17 +93,26 @@ public class Cutting : MonoBehaviour
         MeshCollider meshCollider = go.AddComponent<MeshCollider>();
         meshCollider.convex = true;
         meshCollider.sharedMesh = go.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-
-        ParticleSystem ps = go.AddComponent<ParticleSystem>();
-
-        ParticleSystem.MainModule main = ps.main;
-        main.startColor = new Color(255, 0, 0);
-        ParticleSystemRenderer r = ps.GetComponent<ParticleSystemRenderer>();
-        r.material = crossMaterial;
+        
+        addParticleEffect(go, 90.0f, 0.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 90.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 0.0f, 90.0f);
+        addParticleEffect(go, 180.0f, 0.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 180.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 0.0f, 180.0f);
 
         Destroy(go, destroyTime);
 
         rb.AddExplosionForce(100, go.transform.position, 20);
+    }
+
+    public void addParticleEffect(GameObject parent, float rotationX, float rotationY, float rotationZ)
+    {
+        GameObject bloodParticlePrefab = Instantiate(bloodParticles);
+        bloodParticlePrefab.transform.SetParent(parent.transform);
+        bloodParticlePrefab.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        bloodParticlePrefab.transform.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
+        bloodParticlePrefab.GetComponent<ParticleSystem>().Play();
     }
 
     public SlicedHull SliceObject(GameObject obj, Material crossSectionMaterial = null)
