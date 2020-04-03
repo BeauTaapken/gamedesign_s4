@@ -104,6 +104,7 @@ MonoBehaviour:
     type: 2}
   LivingCounterUiBoss: {fileID: 11400000, guid: 6b0f3332b1b836643be6a7752821288b,
     type: 2}
+  bloodParticles: {fileID: 0}
 --- !u!54 &7050228355874214032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -398,7 +399,6 @@ GameObject:
   - component: {fileID: 7050228357072820464}
   - component: {fileID: 7050228357072820469}
   - component: {fileID: 7050228357072820466}
-  - component: {fileID: 7050228357072820467}
   m_Layer: 0
   m_Name: Bloody_Axe
   m_TagString: Untagged
@@ -466,25 +466,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &7050228357072820467
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7050228357072820465}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ca5425dfa26a69149a85c52e49847745, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7050228357451649722
 GameObject:
   m_ObjectHideFlags: 0
