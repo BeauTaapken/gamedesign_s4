@@ -103,7 +103,7 @@ public class Cutting : MonoBehaviour
 
         Destroy(go, destroyTime);
 
-        rb.AddExplosionForce(100, go.transform.position, 20);
+        rb.AddExplosionForce(100, go.transform.position, 100);
     }
 
     public void addParticleEffect(GameObject parent, float rotationX, float rotationY, float rotationZ)
