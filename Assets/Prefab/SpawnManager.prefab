@@ -46,6 +46,7 @@ MonoBehaviour:
   plane: {fileID: 0}
   SpawnableMonsters:
   - {fileID: 2094313942830195456, guid: e664a0babffc284438dd1ece63d3a812, type: 3}
+  - {fileID: 6411509718034653330, guid: 30ba5162424fe2f48a60518034ac0bbd, type: 3}
   SpawnableBosses: []
   MonsterAmount: 3
   BossAmount: 0

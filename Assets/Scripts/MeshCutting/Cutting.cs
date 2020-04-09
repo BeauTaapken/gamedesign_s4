@@ -56,6 +56,7 @@ public class Cutting : MonoBehaviour
             {
                 obj = GetBodyMesh(hits[i].gameObject);
             }
+            
             SlicedHull hull = SliceObject(obj, crossMaterial);
             if (hull != null)
             {
@@ -147,7 +148,7 @@ public class Cutting : MonoBehaviour
         obj = obj.transform.parent.gameObject;
         foreach (Transform child in obj.transform)
         {
-            if (child.name == "Body_mesh")
+            if (child.GetComponent<SkinnedMeshRenderer>())
             {
                 return child.gameObject;
             }
