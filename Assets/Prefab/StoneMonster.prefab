@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6419389370246955598}
   m_Layer: 8
   m_Name: StoneMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 2184819051607836295}
   m_Layer: 8
   m_Name: Bone001
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
