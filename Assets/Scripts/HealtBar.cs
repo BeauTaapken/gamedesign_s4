@@ -21,8 +21,6 @@ public class HealtBar : MonoBehaviour
     void Start()
     {
         originalSize = mask.rectTransform.rect.width;
-        SetValue(0.5f);
-
     }
     public void SetMaxHealth(float health)
     {
