@@ -41,7 +41,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (spawner.GetLivingMonsters() == 0 && spawner.GetLivingBosses() == 0 && !spawner.isCoroutineRunning())
         {
-            spawner.UpMonsterAmount(3);
+            //spawner.UpMonsterAmount(3);
             StartCoroutine(spawner.spawn(SpawnableMonsters, SpawnableBosses));
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -32,8 +33,23 @@ public class Spawner : ScriptableObject
         this.plane = plane;
         this._planeX = _planeX;
         this._planeZ = _planeZ;
-        this.MonsterAmount = MonsterAmount;
-        this.BossAmount = BossAmount;
+        //this.MonsterAmount = MonsterAmount;
+        //this.BossAmount = BossAmount;
+
+        //SpawnInfoJson test = new SpawnInfoJson();
+        //test.level = 1;
+        //test.bossAmount = 0;
+        //test.monsterAmount = 3;
+
+        //string path = Application.persistentDataPath + "levels.json";
+
+        //string json = JsonUtility.ToJson(test);
+        //File.WriteAllText(path, json);
+
+        //#if UNITY_EDITOR
+        //UnityEditor.AssetDatabase.Refresh();
+        //#endif
+
         this.tmpCountDown = tmpCountDown;
         LivingCounterUiMonster.SetTextMeshPro(tmpMonstersSlain);
         LivingCounterUiBoss.SetTextMeshPro(tmpBossesSlain);
@@ -49,18 +65,20 @@ public class Spawner : ScriptableObject
         return LivingCounterUiBoss.GetLivingMonsters();
     }
 
-    public void UpMonsterAmount(int ExtraMonsters)
-    {
-        MonsterAmount = MonsterAmount * ExtraMonsters;
-    }
+    //public void UpMonsterAmount(int ExtraMonsters)
+    //{
+    //    MonsterAmount = MonsterAmount * ExtraMonsters;
+    //}
 
-    public void UpBossAmount(int ExtraBosses)
-    {
-        BossAmount += ExtraBosses;
-    }
+    //public void UpBossAmount(int ExtraBosses)
+    //{
+    //    BossAmount += ExtraBosses;
+    //}
     
     public IEnumerator spawn(List<GameObject> MonsterList, List<GameObject> BossList)
     {
+
+
         coroutineRunning = true;
         for (int i = 3; i > 0; i--)
         {
