@@ -104,7 +104,8 @@ MonoBehaviour:
     type: 2}
   LivingCounterUiBoss: {fileID: 11400000, guid: 6b0f3332b1b836643be6a7752821288b,
     type: 2}
-  bloodParticles: {fileID: 0}
+  bloodParticles: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
+    type: 3}
 --- !u!54 &7050228355874214032
 Rigidbody:
   m_ObjectHideFlags: 0
