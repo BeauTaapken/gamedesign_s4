@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7050228355874214035}
   - component: {fileID: 7050228355874214032}
   - component: {fileID: 8205493428839172579}
+  - component: {fileID: 8808014033875460288}
   m_Layer: 0
   m_Name: Cutting
   m_TagString: Untagged
@@ -107,7 +108,7 @@ MonoBehaviour:
     type: 2}
   bloodParticles: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
     type: 3}
-  audioSource: {fileID: 0}
+  audio: {fileID: 0}
 --- !u!54 &7050228355874214032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 362343f5afe80b141ab71d23971465a0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f913ffe919010034b8a88f0f2e2ba01d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -220,6 +221,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8808014033875460288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7050228355874214062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ccec818ce3d666418579559315b79ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 8205493428839172579}
+  list:
+  - {fileID: 8300000, guid: 362343f5afe80b141ab71d23971465a0, type: 3}
+  - {fileID: 8300000, guid: 5306fb2cbb3345f4fbc786449fc3c829, type: 3}
 --- !u!1 &7050228356261698051
 GameObject:
   m_ObjectHideFlags: 0
