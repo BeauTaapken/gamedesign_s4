@@ -190,6 +190,7 @@ MonoBehaviour:
   CuttingPlane: {fileID: 7050228355874214062}
   animationClip: {fileID: 7400000, guid: 9847e4f898ab8ef46a55fca34e275a6a, type: 2}
   canCut: 1
+  damage: 10
 --- !u!1 &7050228356790373467
 GameObject:
   m_ObjectHideFlags: 0

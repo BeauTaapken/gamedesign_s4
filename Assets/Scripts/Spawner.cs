@@ -13,7 +13,6 @@ public class Spawner : ScriptableObject
     public LivingCounterUI LivingCounterUiBoss;
 
     public int maxMonsters;
-    public int maxBosses;
     
     private Transform plane;
 
@@ -54,9 +53,9 @@ public class Spawner : ScriptableObject
         MonsterAmount = MonsterAmount * ExtraMonsters;
     }
 
-    public void UpBossAmount(int ExtraBosses)
+    public void SetBossAmount(int BossAmount)
     {
-        BossAmount += ExtraBosses;
+        this.BossAmount = BossAmount;
     }
     
     public IEnumerator spawn(List<GameObject> MonsterList, List<GameObject> BossList)
@@ -71,9 +70,14 @@ public class Spawner : ScriptableObject
 
         SetCounters();
 
+        for (int bossIndex = 0; bossIndex < BossAmount; bossIndex++)
+        {
+            spawnMonsters(BossList);
+        }
+
         for (int monsterIndex = 0; monsterIndex < MonsterAmount; monsterIndex++)
         {
-            while (GameObject.FindGameObjectsWithTag("Monster").Length >= maxMonsters)
+            while (GetAmountOfEnemiesInField() >= maxMonsters)
             {
                 Debug.Log("waiting to spawn");
                 yield return new WaitForSeconds(0.1f);
@@ -82,19 +86,13 @@ public class Spawner : ScriptableObject
             spawnMonsters(MonsterList);
         }
 
-        for (int bossIndex = 0; bossIndex < BossAmount; bossIndex++)
-        {
-            while (GameObject.FindGameObjectsWithTag("Boss").Length >= maxBosses)
-            {
-                Debug.Log("waiting to spawn");
-                yield return new WaitForSeconds(0.1f);
-            }
-
-            spawnMonsters(BossList);
-        }
-
         yield return null;
         coroutineRunning = false;
+    }
+
+    private int GetAmountOfEnemiesInField()
+    {
+        return GameObject.FindGameObjectsWithTag("Monster").Length + GameObject.FindGameObjectsWithTag("Boss").Length;
     }
 
     private void SetCounters()

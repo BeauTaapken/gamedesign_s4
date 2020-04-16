@@ -27,7 +27,8 @@ public class GetHit : MonoBehaviour
     }
     void OnTriggerStay(Collider hit)
     {
-        if(hit.gameObject.tag == "Monster")
+        Debug.Log(hit);
+        if(hit.gameObject.tag.ToLower() == "monster" || hit.gameObject.tag.ToLower() == "boss")
         {
             if (!isWaiting)
             {
