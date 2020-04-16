@@ -67,7 +67,7 @@ public class Cutting : MonoBehaviour
                 obj = GetBodyMesh(hits[i].gameObject);
                 obj.transform.localScale = hits[i].transform.parent.localScale;
             }
-            
+
             SlicedHull hull = SliceObject(obj, crossMaterial);
             if (hull != null)
             {

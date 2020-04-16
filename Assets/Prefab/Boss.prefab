@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e72363bb0d9c874d9056f9681d2e165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 288830727874658604}
+  Animator: {fileID: 382856027951378370}
   agent: {fileID: 1049313482103565364}
 --- !u!114 &3340039137846221793
 MonoBehaviour:
