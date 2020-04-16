@@ -19,14 +19,13 @@ public class Cutting : MonoBehaviour
     public LivingCounterUI LivingCounterUiBoss;
     public GameObject bloodParticles;
 
-    public AudioSource audioSource;
-
+    public Audio audio;
     private float horizontal;
     private float vertical;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audio = GetComponent<Audio>();
     }
     // Update is called once per frame
     void Update()
@@ -51,12 +50,12 @@ public class Cutting : MonoBehaviour
         }
         else
         {
-            //audioSource.Play();
+            audio.playRandom();
         }
 
         for (int i = 0; i < hits.Length; i++)
         {
-            audioSource.Play();
+            
             GameObject obj;
             //Remove getbodymesh function if old way is possible(bones don't move on their own)
             if(hits[i].GetComponent<SkinnedMeshRenderer>())
