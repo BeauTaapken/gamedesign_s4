@@ -21,7 +21,6 @@ public class BossHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log(currentHealth);
         currentHealth -= damage;
         Debug.Log(currentHealth);
         mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * (currentHealth / 100.0f));

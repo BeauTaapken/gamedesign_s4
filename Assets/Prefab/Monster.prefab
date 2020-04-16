@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 2806701884355857583}
   - component: {fileID: 2113315361446969050}
   - component: {fileID: 2113315361446969051}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -752,7 +752,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.65
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e72363bb0d9c874d9056f9681d2e165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 2094313942830195456}
+  Animator: {fileID: 7737569454576657059}
   agent: {fileID: 2113315361446969050}
 --- !u!1 &2263920991247663516
 GameObject:
@@ -996,7 +996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2612739447933163488}
   m_LocalRotation: {x: 0.50000006, y: -0.5, z: -0.4999999, w: 0.5}
-  m_LocalPosition: {x: 0.20819089, y: 0.000000006921734, z: 0.042485364}
+  m_LocalPosition: {x: 0.20819089, y: 0, z: 0.042485364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2147402002644384950}
@@ -1365,6 +1365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4709757338651148776}
   - component: {fileID: 1947769373523509956}
+  - component: {fileID: 9065976572354093164}
   m_Layer: 8
   m_Name: Body_mesh
   m_TagString: Untagged
@@ -1380,7 +1381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4059968738019068964}
   m_LocalRotation: {x: -0.70710695, y: -0.00000016858735, z: -0.00000016858743, w: 0.7071066}
-  m_LocalPosition: {x: 0.003, y: 0.954, z: 0.096}
+  m_LocalPosition: {x: 0.09220958, y: 0.9633368, z: 0.05588146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2147402002644384950}
@@ -1499,6 +1500,22 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.05677989, y: 0.036659673, z: -0.00000059604645}
     m_Extent: {x: 0.9633632, y: 0.3785045, z: 0.69050246}
   m_DirtyAABB: 0
+--- !u!114 &9065976572354093164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4059968738019068964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7890e452d8df6e44ab4f6fa3c3257ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinColorMaterials:
+  - {fileID: 2100000, guid: 3f77a46162d560c4d8fe92db364f80d8, type: 2}
+  - {fileID: 2100000, guid: 76c4344a468410b448ffff80db3753fa, type: 2}
+  - {fileID: 2100000, guid: 0ad52be1891ce0c418718b9c9ae95eff, type: 2}
 --- !u!1 &4098166977941598399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,7 +1754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5419845161616674027}
   m_LocalRotation: {x: 0.50000006, y: -0.5, z: -0.4999999, w: 0.5}
-  m_LocalPosition: {x: 5.3432814e-14, y: 0.687, z: -0.036730282}
+  m_LocalPosition: {x: 5.34328e-14, y: 0.9969686, z: -0.03673028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3465319808994616274}
@@ -1759,7 +1776,7 @@ CapsuleCollider:
   m_Radius: 0.6704614
   m_Height: 1.663469
   m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 8.111531e-17}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5627119867094056007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,7 +2453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7008052798577462618}
   m_LocalRotation: {x: 0.50000006, y: -0.5, z: -0.4999999, w: 0.5}
-  m_LocalPosition: {x: -0.20819089, y: 0.000000006921745, z: 0.042485297}
+  m_LocalPosition: {x: -0.20819089, y: 0, z: 0.042485297}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2147402002644384950}

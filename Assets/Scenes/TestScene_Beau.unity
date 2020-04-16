@@ -218,21 +218,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavMesh
       objectReference: {fileID: 0}
-    - target: {fileID: 4796741807744168867, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
-        type: 3}
-      propertyPath: m_DefaultArea
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4796741807744168867, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
-        type: 3}
-      propertyPath: m_OverrideVoxelSize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4796741807744168867, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
-        type: 3}
-      propertyPath: m_OverrideTileSize
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 734012949745950897, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1285,6 +1270,11 @@ PrefabInstance:
       propertyPath: healtBar
       value: 
       objectReference: {fileID: 2062690479}
+    - target: {fileID: 7050228357451649724, guid: d909d52fc2ff58b458beb0fa9c8af5d2,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d909d52fc2ff58b458beb0fa9c8af5d2, type: 3}
 --- !u!1001 &4289057214792534817

@@ -78,7 +78,7 @@ public class Cutting : MonoBehaviour
                 obj = GetBodyMesh(hits[i].gameObject);
                 obj.transform.localScale = hits[i].transform.parent.localScale;
             }
-            
+
             SlicedHull hull = SliceObject(obj, crossMaterial);
             if (hull != null)
             {
@@ -109,7 +109,6 @@ public class Cutting : MonoBehaviour
 
     public void AddHullComponents(GameObject go)
     {
-        Debug.Log(go.transform.localScale);
         //(int) Mathf.Log(layerMask.value, 2) returns the correct layer value of the layermask we want to use.
         go.layer = (int)Mathf.Log(layerMask.value, 2);
         Rigidbody rb = go.AddComponent<Rigidbody>();
