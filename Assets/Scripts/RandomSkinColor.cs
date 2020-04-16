@@ -11,8 +11,9 @@ public class RandomSkinColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int skinColorRange = Random.Range(0, skinColorMaterials.Length);
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+
+        int skinColorRange = Random.Range(0, skinColorMaterials.Length);
         Material[] mats = { skinColorMaterials[skinColorRange] };
         skinnedMeshRenderer.materials = mats;
     }
