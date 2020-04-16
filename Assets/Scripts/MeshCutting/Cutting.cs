@@ -35,7 +35,7 @@ public class Cutting : MonoBehaviour
         }
     }
 
-    public void Slice()
+    public void Slice(float damage)
     {
         Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(3.0f, 1.0f, 1.5f), cutPlane.rotation, layerMask);
 
@@ -54,7 +54,18 @@ public class Cutting : MonoBehaviour
             }
             else
             {
+                if (hits[i].transform.parent.name.ToLower().Contains("boss"))
+                {
+                    BossHealth bossHealth = hits[i].transform.parent.GetComponent<BossHealth>();
+                    bossHealth.TakeDamage(damage);
+                    Debug.Log("hitting boss");
+                    if (bossHealth.getCurrentHealth() > bossHealth.getMinHealthToSlice())
+                    {
+                        return;
+                    }
+                }
                 obj = GetBodyMesh(hits[i].gameObject);
+                obj.transform.localScale = hits[i].transform.parent.localScale;
             }
             
             SlicedHull hull = SliceObject(obj, crossMaterial);
@@ -87,6 +98,7 @@ public class Cutting : MonoBehaviour
 
     public void AddHullComponents(GameObject go)
     {
+        Debug.Log(go.transform.localScale);
         //(int) Mathf.Log(layerMask.value, 2) returns the correct layer value of the layermask we want to use.
         go.layer = (int)Mathf.Log(layerMask.value, 2);
         Rigidbody rb = go.AddComponent<Rigidbody>();

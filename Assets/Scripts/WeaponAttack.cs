@@ -8,6 +8,7 @@ public class WeaponAttack : MonoBehaviour
     public GameObject CuttingPlane;
     public AnimationClip animationClip;
     public bool canCut;
+    public float damage;
 
     private Cutting cutting;
     private Animator animator;
@@ -30,7 +31,7 @@ public class WeaponAttack : MonoBehaviour
             animator.SetBool("isSlashing", true);
             if (canCut)
             {
-                cutting.Slice();
+                cutting.Slice(damage);
             }
         }
 

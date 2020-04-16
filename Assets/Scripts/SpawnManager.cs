@@ -14,12 +14,15 @@ public class SpawnManager : MonoBehaviour
 
     public int MonsterAmount = 3;
     public int BossAmount = 0;
+    public int bossRounds;
 
     public TextMeshProUGUI tmpMonstersSlain;
     public TextMeshProUGUI tmpBossesSlain;
     public TextMeshProUGUI tmpCountDown;
 
     public Spawner spawner;
+
+    private int round = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +44,19 @@ public class SpawnManager : MonoBehaviour
     {
         if (spawner.GetLivingMonsters() == 0 && spawner.GetLivingBosses() == 0 && !spawner.isCoroutineRunning())
         {
-            spawner.UpMonsterAmount(3);
+            round++;
+            if (round % bossRounds == 0)
+            {
+                int bossAmount = round / bossRounds;
+
+                spawner.SetBossAmount(bossAmount);
+            }
+            else
+            {
+                spawner.SetBossAmount(0);
+                spawner.UpMonsterAmount(3);
+            }
+
             StartCoroutine(spawner.spawn(SpawnableMonsters, SpawnableBosses));
         }
     }
