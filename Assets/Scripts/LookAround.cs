@@ -22,6 +22,7 @@ public class LookAround : MonoBehaviour
     {
         character = gameObject.transform.parent.gameObject.transform;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()

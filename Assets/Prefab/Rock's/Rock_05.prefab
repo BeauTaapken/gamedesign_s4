@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2750462126165009615}
-  - component: {fileID: 2665534129867949091}
   - component: {fileID: 6420804392836747295}
   m_Layer: 11
   m_Name: Rock_05
@@ -35,33 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &2665534129867949091
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2748922856883873785}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.17114961, y: 0.16382825, z: 0.38719296}
-  m_Size: 6.956297
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.60094124
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2770867315242807175}
-  - screenRelativeHeight: 0.29783458
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2770867314513464373}
-  - screenRelativeHeight: 0.0659413
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2770867317106218725}
-  m_Enabled: 1
 --- !u!64 &6420804392836747295
 MeshCollider:
   m_ObjectHideFlags: 0
