@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - sliceable
+  - Monster
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -15,9 +16,9 @@ TagManager:
   - 
   - 
   - Sliceable
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Wall
   - 
   - 
   - 

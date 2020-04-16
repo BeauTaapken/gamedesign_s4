@@ -15,26 +15,29 @@ public class Cutting : MonoBehaviour
     [Range(0, 360)]
     public int controllerRotation;
     public float destroyTime;
+    public LivingCounterUI LivingCounterUiMonster;
+    public LivingCounterUI LivingCounterUiBoss;
+    public GameObject bloodParticles;
 
     private float horizontal;
     private float vertical;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation, 0.2f);
-        RotatePlane();
+        if (Mathf.Approximately(Input.GetAxis("Fire2"), 1))
+        {
+            RotatePlane();
+        }
+        else
+        {
+            resetCutPlaneXY();
+        }
     }
 
-    public void Slice()
+    public void Slice(float damage)
     {
-        Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(5, 0.1f, 5), cutPlane.rotation, layerMask);
+        Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(3.0f, 1.0f, 1.5f), cutPlane.rotation, layerMask);
 
         if (hits.Length <= 0)
         {
@@ -43,20 +46,51 @@ public class Cutting : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
-            SlicedHull hull = SliceObject(hits[i].gameObject, crossMaterial);
+            GameObject obj;
+            //Remove getbodymesh function if old way is possible(bones don't move on their own)
+            if(hits[i].GetComponent<SkinnedMeshRenderer>())
+            {
+                obj = hits[i].gameObject;
+            }
+            else
+            {
+                if (hits[i].transform.parent.name.ToLower().Contains("boss"))
+                {
+                    BossHealth bossHealth = hits[i].transform.parent.GetComponent<BossHealth>();
+                    bossHealth.TakeDamage(damage);
+                    Debug.Log("hitting boss");
+                    if (bossHealth.getCurrentHealth() > bossHealth.getMinHealthToSlice())
+                    {
+                        return;
+                    }
+                }
+                obj = GetBodyMesh(hits[i].gameObject);
+                obj.transform.localScale = hits[i].transform.parent.localScale;
+            }
+
+            SlicedHull hull = SliceObject(obj, crossMaterial);
             if (hull != null)
             {
-                GameObject bottom = hull.createHull(hits[i].gameObject, crossMaterial, false);
-                GameObject top = hull.createHull(hits[i].gameObject, crossMaterial, true);
+                //Remove boneLocation from creathull function if old way is possible(bones don't move on their own)
+                GameObject bottom = hull.createHull(hits[i].gameObject, obj, crossMaterial, false);
+                GameObject top = hull.createHull(hits[i].gameObject, obj, crossMaterial, true);
                 AddHullComponents(bottom);
                 AddHullComponents(top);
-                if (hits[i].gameObject.transform.parent)
+                if (obj.transform.parent)
                 {
-                    Destroy(hits[i].gameObject.transform.parent.gameObject);
+                    Destroy(obj.transform.parent.gameObject);
+                    if (obj.transform.parent.tag == "Monster")
+                    {
+                        LivingCounterUiMonster.RemoveMonster();
+                    }
+                    else if (obj.transform.parent.tag == "Boss")
+                    {
+                        LivingCounterUiBoss.RemoveMonster();
+                    }
                 }
                 else
                 {
-                    Destroy(hits[i].gameObject);
+                    Destroy(obj);
                 }
             }
         }
@@ -71,17 +105,26 @@ public class Cutting : MonoBehaviour
         MeshCollider meshCollider = go.AddComponent<MeshCollider>();
         meshCollider.convex = true;
         meshCollider.sharedMesh = go.GetComponent<SkinnedMeshRenderer>().sharedMesh;
-
-        ParticleSystem ps = go.AddComponent<ParticleSystem>();
-
-        ParticleSystem.MainModule main = ps.main;
-        main.startColor = new Color(255, 0, 0);
-        ParticleSystemRenderer r = ps.GetComponent<ParticleSystemRenderer>();
-        r.material = crossMaterial;
+        
+        addParticleEffect(go, 90.0f, 0.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 90.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 0.0f, 90.0f);
+        addParticleEffect(go, 180.0f, 0.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 180.0f, 0.0f);
+        addParticleEffect(go, 0.0f, 0.0f, 180.0f);
 
         Destroy(go, destroyTime);
 
-        rb.AddExplosionForce(100, go.transform.position, 20);
+        rb.AddExplosionForce(100, go.transform.position, 100);
+    }
+
+    public void addParticleEffect(GameObject parent, float rotationX, float rotationY, float rotationZ)
+    {
+        GameObject bloodParticlePrefab = Instantiate(bloodParticles);
+        bloodParticlePrefab.transform.SetParent(parent.transform);
+        bloodParticlePrefab.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        bloodParticlePrefab.transform.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
+        bloodParticlePrefab.GetComponent<ParticleSystem>().Play();
     }
 
     public SlicedHull SliceObject(GameObject obj, Material crossSectionMaterial = null)
@@ -94,18 +137,34 @@ public class Cutting : MonoBehaviour
 
     public void RotatePlane()
     {
-        if (Input.GetJoystickNames().Length > 0)
+        horizontal = Input.GetAxis("Mouse X");
+        vertical = Input.GetAxis("Mouse Y");
+        if (Input.GetJoystickNames().Length > 0 && horizontal > deadzone || Input.GetJoystickNames().Length > 0 && horizontal < -deadzone || Input.GetJoystickNames().Length > 0 && vertical > deadzone || Input.GetJoystickNames().Length > 0 && vertical < -deadzone || Input.GetJoystickNames().Length <= 0)
         {
-            horizontal = Input.GetAxis("Mouse X");
-            vertical = Input.GetAxis("Mouse Y");
-            if (horizontal > deadzone || horizontal < -deadzone || vertical > deadzone || vertical < -deadzone)
+            cutPlane.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
+        }
+        else
+        {
+            resetCutPlaneXY();
+        }
+    }
+
+    public void resetCutPlaneXY()
+    {
+        cutPlane.transform.localEulerAngles = new Vector3(0, 0, cutPlane.localEulerAngles.z);
+    }
+
+    public GameObject GetBodyMesh(GameObject obj)
+    {
+        obj = obj.transform.parent.gameObject;
+        foreach (Transform child in obj.transform)
+        {
+            if (child.GetComponent<SkinnedMeshRenderer>())
             {
-                cutPlane.transform.localEulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
+                return child.gameObject;
             }
         }
-        //else
-        //{
-        //    cutPlane.eulerAngles = new Vector3(cutPlane.eulerAngles.x, cutPlane.eulerAngles.y, -Input.GetAxis("Mouse X") * 5);
-        //}
+
+        return null;
     }
 }
