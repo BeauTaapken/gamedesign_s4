@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 288830727874658604, guid: 8176907db809f084480bb85bf7df1fa2, type: 3}
   MonsterAmount: 3
   BossAmount: 0
-  bossRounds: 2
+  bossRounds: 3
   tmpMonstersSlain: {fileID: 0}
   tmpBossesSlain: {fileID: 0}
   tmpCountDown: {fileID: 0}
