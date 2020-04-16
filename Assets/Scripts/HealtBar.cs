@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class HealtBar : MonoBehaviour
@@ -32,6 +33,7 @@ public class HealtBar : MonoBehaviour
         if (currentHealth < 0f)
         {
             currentHealth = 0f;
+            SceneManager.LoadScene("Game_Over");
         }
         SetHealth(currentHealth);
 
