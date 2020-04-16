@@ -213,6 +213,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 734012949745950911, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
+        type: 3}
+      propertyPath: m_Name
+      value: NavMesh
+      objectReference: {fileID: 0}
     - target: {fileID: 4796741807744168867, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
         type: 3}
       propertyPath: m_DefaultArea
@@ -227,11 +232,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OverrideTileSize
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 734012949745950911, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
-        type: 3}
-      propertyPath: m_Name
-      value: NavMesh
       objectReference: {fileID: 0}
     - target: {fileID: 734012949745950897, guid: 92d0a34f0b87fc94e8c460a8f1954f3d,
         type: 3}
@@ -1224,7 +1224,7 @@ PrefabInstance:
     - target: {fileID: 7050228357985624672, guid: d909d52fc2ff58b458beb0fa9c8af5d2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.08
+      value: 2.264
       objectReference: {fileID: 0}
     - target: {fileID: 7050228356790373469, guid: d909d52fc2ff58b458beb0fa9c8af5d2,
         type: 3}
