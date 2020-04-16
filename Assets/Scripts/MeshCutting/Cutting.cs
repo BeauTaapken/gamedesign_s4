@@ -19,7 +19,7 @@ public class Cutting : MonoBehaviour
     public LivingCounterUI LivingCounterUiBoss;
     public GameObject bloodParticles;
 
-    public Audio audio;
+    private Audio audio;
     private float horizontal;
     private float vertical;
 

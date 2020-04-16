@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScene_Beau.unity
     guid: 0f49fe72c37aa9a48b95b65f779bd9c7
   - enabled: 1
-    path: Assets/Scenes/PathFinding_Test.unity
-    guid: 222afac06df5fb747a1c6b3969892009
-  - enabled: 1
     path: Assets/Scenes/Game_Over.unity
     guid: 8ab0feef2bc940446a7da5b9b8b98b37
   m_configObjects: {}
