@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class LookAround : MonoBehaviour
 {
-    
-    public float Sensitivity = 100.0f;
+    public Sensitivity Sensitivity;
     public float minimumY;
     public float maximumY;
 
     private Vector2 _mouseLook;
     private Vector2 _smoothV;
+    private int SensitivityValue;
 
     private Transform character;
 
@@ -23,14 +23,15 @@ public class LookAround : MonoBehaviour
         character = gameObject.transform.parent.gameObject.transform;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        SensitivityValue = Sensitivity.GetSensitivity();
     }
 
     void Update()
     {
         if (Mathf.Approximately(Input.GetAxis("Fire2"), 0f))
         {
-            float mouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
-            float mouseY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X") * SensitivityValue * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * SensitivityValue * Time.deltaTime;
             
             rotationY -= mouseY;
             rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
