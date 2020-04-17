@@ -68,9 +68,10 @@ public class Cutting : MonoBehaviour
                 {
                     BossHealth bossHealth = hits[i].transform.parent.GetComponent<BossHealth>();
                     bossHealth.TakeDamage(damage);
-                    Debug.Log("hitting boss");
                     if (bossHealth.getCurrentHealth() > bossHealth.getMinHealthToSlice())
                     {
+                        addParticleEffect(hits[i].transform.parent.gameObject, 0.0f, 0.0f, 90.0f);
+                        Destroy(hits[i].transform.parent.gameObject.GetComponent<ParticleSystem>(), 1.0f);
                         return;
                     }
                 }
