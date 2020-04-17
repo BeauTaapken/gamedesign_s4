@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67931b2e0f06be0498e85672cd41173c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sensitivity: 100
+  Sensitivity: {fileID: 11400000, guid: b5c08aa0a7963f148a9d0e42b2ad4c48, type: 2}
   minimumY: -40
   maximumY: 40
 --- !u!1 &7050228357072820465
