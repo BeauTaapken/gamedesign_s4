@@ -3,7 +3,15 @@ guid: c764aada146d1e74faffd655863c4925
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cutPlane: {instanceID: 0}
+  - crossMaterial: {instanceID: 0}
+  - LivingCounterUiMonster: {fileID: 11400000, guid: fe03b029e0835a14695ac6101145cc8c,
+      type: 2}
+  - LivingCounterUiBoss: {fileID: 11400000, guid: 6b0f3332b1b836643be6a7752821288b,
+      type: 2}
+  - bloodParticles: {instanceID: 0}
+  - inputs: {fileID: 11400000, guid: b8a6176332ed73c4394b1752e7f6a45a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

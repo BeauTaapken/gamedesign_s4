@@ -11,6 +11,9 @@ public class StartScreen : MonoBehaviour
     public GameObject settings;
 
     public TextMeshProUGUI TmpSensitivity;
+    public TextMeshProUGUI TmpRotateControls;
+    public TextMeshProUGUI TmpAttackControls;
+
     public Sensitivity Sensitivity;
 
     void Start()
@@ -18,6 +21,7 @@ public class StartScreen : MonoBehaviour
         mainMenu.SetActive(true);
         settings.SetActive(false);
         SetSensitivityText();
+        setControlsText();
     }
 
     public void StartGame()
@@ -48,8 +52,22 @@ public class StartScreen : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetSensitivityText()
+    private void SetSensitivityText()
     {
         TmpSensitivity.text = "Sensitivity: " + Sensitivity.GetSensitivity();
+    }
+
+    private void setControlsText()
+    {
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            TmpRotateControls.text = "Rotate Weapon: Left trigger + right stick";
+            TmpAttackControls.text = "Attack: Right trigger";
+        }
+        else
+        {
+            TmpRotateControls.text = "Rotate Weapon: Right mouse button + circle mouse";
+            TmpAttackControls.text = "Attack: Left mouse button";
+        }
     }
 }

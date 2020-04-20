@@ -1238,12 +1238,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
         type: 3}
-    - target: {fileID: 7050228355874214035, guid: d909d52fc2ff58b458beb0fa9c8af5d2,
-        type: 3}
-      propertyPath: bloodParticles
-      value: 
-      objectReference: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
-        type: 3}
     - target: {fileID: 7050228357451649725, guid: d909d52fc2ff58b458beb0fa9c8af5d2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Sensitivity : ScriptableObject
 {
-    private int _sensitivity;
+    public int _sensitivity;
 
     // Start is called before the first frame update
     void Start()

@@ -26,6 +26,10 @@ public class Cutting : MonoBehaviour
     private void Start()
     {
         audio = GetComponent<Audio>();
+        //Outside of the editor, unity gets controller info in 0 to 1 instead of the editor's 0 to 5, this is needed to make the game work outside of the editor
+#if UNITY_STANDALONE && !UNITY_EDITOR
+        deadzone /= 10;
+#endif
     }
     // Update is called once per frame
     void Update()
@@ -48,10 +52,8 @@ public class Cutting : MonoBehaviour
         {
             return;
         }
-        else
-        {
-            audio.playRandom();
-        }
+
+        audio.playRandom();
 
         for (int i = 0; i < hits.Length; i++)
         {
@@ -72,7 +74,7 @@ public class Cutting : MonoBehaviour
                     {
                         addParticleEffect(hits[i].transform.parent.gameObject, 0.0f, 0.0f, 90.0f);
                         Destroy(hits[i].transform.parent.gameObject.GetComponent<ParticleSystem>(), 1.0f);
-                        return;
+                        continue;
                     }
                 }
                 obj = GetBodyMesh(hits[i].gameObject);
@@ -150,6 +152,7 @@ public class Cutting : MonoBehaviour
     {
         horizontal = Input.GetAxis("Mouse X");
         vertical = Input.GetAxis("Mouse Y");
+
         if (Input.GetJoystickNames().Length > 0 && horizontal > deadzone || Input.GetJoystickNames().Length > 0 && horizontal < -deadzone || Input.GetJoystickNames().Length > 0 && vertical > deadzone || Input.GetJoystickNames().Length > 0 && vertical < -deadzone || Input.GetJoystickNames().Length <= 0)
         {
             cutPlane.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
