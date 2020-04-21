@@ -18,6 +18,7 @@ public class Cutting : MonoBehaviour
     public LivingCounterUI LivingCounterUiMonster;
     public LivingCounterUI LivingCounterUiBoss;
     public GameObject bloodParticles;
+    public Settings Settings;
 
     private Audio audio;
     private float horizontal;
@@ -152,7 +153,7 @@ public class Cutting : MonoBehaviour
         horizontal = Input.GetAxis("Mouse X");
         vertical = Input.GetAxis("Mouse Y");
 
-        if (Input.GetJoystickNames().Length > 0 && horizontal > deadzone || Input.GetJoystickNames().Length > 0 && horizontal < -deadzone || Input.GetJoystickNames().Length > 0 && vertical > deadzone || Input.GetJoystickNames().Length > 0 && vertical < -deadzone || Input.GetJoystickNames().Length <= 0)
+        if (Settings.GetController() && horizontal > deadzone || Settings.GetController() && horizontal < -deadzone || Settings.GetController() && vertical > deadzone || Settings.GetController() && vertical < -deadzone || !Settings.GetController())
         {
             cutPlane.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
         }

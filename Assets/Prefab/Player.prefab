@@ -108,6 +108,7 @@ MonoBehaviour:
     type: 2}
   bloodParticles: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
     type: 3}
+  Settings: {fileID: 11400000, guid: 93e6f8afe6410b947bd3575c25f187f3, type: 2}
 --- !u!54 &7050228355874214032
 Rigidbody:
   m_ObjectHideFlags: 0
