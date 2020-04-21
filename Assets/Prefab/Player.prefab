@@ -108,7 +108,6 @@ MonoBehaviour:
     type: 2}
   bloodParticles: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc,
     type: 3}
-  inputs: {fileID: 11400000, guid: b8a6176332ed73c4394b1752e7f6a45a, type: 2}
 --- !u!54 &7050228355874214032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -502,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67931b2e0f06be0498e85672cd41173c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sensitivity: {fileID: 11400000, guid: b5c08aa0a7963f148a9d0e42b2ad4c48, type: 2}
+  Settings: {fileID: 11400000, guid: 93e6f8afe6410b947bd3575c25f187f3, type: 2}
   minimumY: -40
   maximumY: 40
 --- !u!1 &7050228357072820465

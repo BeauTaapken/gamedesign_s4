@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LookAround : MonoBehaviour
 {
-    public Sensitivity Sensitivity;
+    public Settings Settings;
     public float minimumY;
     public float maximumY;
 
@@ -23,7 +23,7 @@ public class LookAround : MonoBehaviour
         character = gameObject.transform.parent.gameObject.transform;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        SensitivityValue = Sensitivity.GetSensitivity();
+        SensitivityValue = Settings.GetSensitivity();
     }
 
     void Update()

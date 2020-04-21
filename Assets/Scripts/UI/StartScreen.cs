@@ -7,19 +7,35 @@ using UnityEngine.UI;
 
 public class StartScreen : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject settings;
+    public GameObject mainMenuButton;
+    public GameObject settingsButton;
+
+    public Toggle ControllerToggle;
 
     public TextMeshProUGUI TmpSensitivity;
     public TextMeshProUGUI TmpRotateControls;
     public TextMeshProUGUI TmpAttackControls;
-
-    public Sensitivity Sensitivity;
+    
+    public Settings Settings;
 
     void Start()
     {
-        mainMenu.SetActive(true);
-        settings.SetActive(false);
+        mainMenuButton.SetActive(true);
+        settingsButton.SetActive(false);
+
+        Settings.SetSensitivity(100);
+
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            Settings.SetController(true);
+            ControllerToggle.isOn = true;
+        }
+        else
+        {
+            Settings.SetController(false);
+            ControllerToggle.isOn = false;
+        }
+
         SetSensitivityText();
         setControlsText();
     }
@@ -31,20 +47,26 @@ public class StartScreen : MonoBehaviour
 
     public void OpenSettings()
     {
-        mainMenu.SetActive(false);
-        settings.SetActive(true);
+        mainMenuButton.SetActive(false);
+        settingsButton.SetActive(true);
     }
 
     public void SetSensitivity(Slider sensitivitySlider)
     {
-        Sensitivity.SetSensitivity((int)sensitivitySlider.value);
+        Settings.SetSensitivity((int)sensitivitySlider.value);
         SetSensitivityText();
+    }
+
+    public void SetController(Toggle toggle)
+    {
+        Settings.SetController(toggle.isOn);
+        setControlsText();
     }
 
     public void CloseSettings()
     {
-        mainMenu.SetActive(true);
-        settings.SetActive(false);
+        mainMenuButton.SetActive(true);
+        settingsButton.SetActive(false);
     }
 
     public void QuitGame()
@@ -54,12 +76,12 @@ public class StartScreen : MonoBehaviour
 
     private void SetSensitivityText()
     {
-        TmpSensitivity.text = "Sensitivity: " + Sensitivity.GetSensitivity();
+        TmpSensitivity.text = "Sensitivity: " + Settings.GetSensitivity();
     }
 
     private void setControlsText()
     {
-        if (Input.GetJoystickNames().Length > 0)
+        if (Settings.GetController())
         {
             TmpRotateControls.text = "Rotate Weapon: Left trigger + right stick";
             TmpAttackControls.text = "Attack: Right trigger";

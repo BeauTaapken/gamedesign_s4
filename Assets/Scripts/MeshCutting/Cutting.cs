@@ -57,7 +57,6 @@ public class Cutting : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
-            
             GameObject obj;
             //Remove getbodymesh function if old way is possible(bones don't move on their own)
             if(hits[i].GetComponent<SkinnedMeshRenderer>())

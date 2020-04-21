@@ -9,10 +9,12 @@ public class onGameOverLoaded : MonoBehaviour
 {
     public TextMeshProUGUI TmpUguiRestart;
 
+    public Settings Settings;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (Input.GetJoystickNames().Length > 0)
+        if (Settings.GetController())
         {
             TmpUguiRestart.text = "Press the A button to restart";
         }
@@ -44,7 +46,7 @@ public class onGameOverLoaded : MonoBehaviour
     {
         if (Mathf.Approximately(Input.GetAxis("Restart"), 1))
         {
-            SceneManager.LoadScene("TestScene_Beau");
+            SceneManager.LoadScene("Start");
         }
     }
 }
