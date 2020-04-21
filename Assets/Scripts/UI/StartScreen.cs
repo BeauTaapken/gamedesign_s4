@@ -20,6 +20,9 @@ public class StartScreen : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
         mainMenuButton.SetActive(true);
         settingsButton.SetActive(false);
 

@@ -153,7 +153,8 @@ public class Cutting : MonoBehaviour
         horizontal = Input.GetAxis("Mouse X");
         vertical = Input.GetAxis("Mouse Y");
 
-        if (Settings.GetController() && horizontal > deadzone || Settings.GetController() && horizontal < -deadzone || Settings.GetController() && vertical > deadzone || Settings.GetController() && vertical < -deadzone || !Settings.GetController())
+        if (horizontal > deadzone || horizontal < -deadzone || vertical > deadzone || vertical < -deadzone)
+        //if (Settings.GetController() && horizontal > deadzone || Settings.GetController() && horizontal < -deadzone || Settings.GetController() && vertical > deadzone || Settings.GetController() && vertical < -deadzone || !Settings.GetController())
         {
             cutPlane.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(vertical, horizontal) * controllerRotation / Mathf.PI);
         }
