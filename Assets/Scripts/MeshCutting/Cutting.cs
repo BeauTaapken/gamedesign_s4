@@ -72,8 +72,6 @@ public class Cutting : MonoBehaviour
                     bossHealth.TakeDamage(damage);
                     if (bossHealth.getCurrentHealth() > bossHealth.getMinHealthToSlice())
                     {
-                        addParticleEffect(hits[i].transform.parent.gameObject, 0.0f, 0.0f, 90.0f);
-                        Destroy(hits[i].transform.parent.gameObject.GetComponent<ParticleSystem>(), 1.0f);
                         continue;
                     }
                 }
