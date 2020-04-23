@@ -16,5 +16,4 @@ MonoBehaviour:
     type: 2}
   LivingCounterUiBoss: {fileID: 11400000, guid: 6b0f3332b1b836643be6a7752821288b,
     type: 2}
-  maxMonsters: 100
-  maxBosses: 0
+  maxMonsters: 200

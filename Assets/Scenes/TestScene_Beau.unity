@@ -1087,6 +1087,11 @@ PrefabInstance:
       propertyPath: tmpCountDown
       value: 
       objectReference: {fileID: 791094249}
+    - target: {fileID: 1353063912356278326, guid: 64b692861b3a60d4fbb51b09ff24feb6,
+        type: 3}
+      propertyPath: bossRounds
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64b692861b3a60d4fbb51b09ff24feb6, type: 3}
 --- !u!1001 &3633087537407452578

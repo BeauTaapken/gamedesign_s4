@@ -49,7 +49,7 @@ MonoBehaviour:
   - {fileID: 6411509718034653330, guid: 30ba5162424fe2f48a60518034ac0bbd, type: 3}
   SpawnableBosses:
   - {fileID: 288830727874658604, guid: 8176907db809f084480bb85bf7df1fa2, type: 3}
-  MonsterAmount: 3
+  MonsterAmount: 10
   BossAmount: 0
   bossRounds: 3
   tmpMonstersSlain: {fileID: 0}
