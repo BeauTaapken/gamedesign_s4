@@ -60,6 +60,7 @@ public class Spawner : ScriptableObject
     
     public IEnumerator spawn(List<GameObject> MonsterList, List<GameObject> BossList)
     {
+        LivingCounterUiMonster.SetMonstersInField(0);
         coroutineRunning = true;
         for (int i = 3; i > 0; i--)
         {
@@ -77,10 +78,10 @@ public class Spawner : ScriptableObject
 
         for (int monsterIndex = 0; monsterIndex < MonsterAmount; monsterIndex++)
         {
-            while (GetAmountOfEnemiesInField() >= maxMonsters)
+            while (LivingCounterUiMonster.GetMonstersInField() >= maxMonsters)
             {
                 Debug.Log("waiting to spawn");
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(1.0f);
             }
 
             spawnMonsters(MonsterList);
@@ -88,11 +89,6 @@ public class Spawner : ScriptableObject
 
         yield return null;
         coroutineRunning = false;
-    }
-
-    private int GetAmountOfEnemiesInField()
-    {
-        return GameObject.FindGameObjectsWithTag("Monster").Length + GameObject.FindGameObjectsWithTag("Boss").Length;
     }
 
     private void SetCounters()
@@ -113,6 +109,7 @@ public class Spawner : ScriptableObject
 
     private void spawnMonsters(List<GameObject> MonsterList)
     {
+        LivingCounterUiMonster.UpMonstersInField();
         int monsterNumber = Random.Range(0, MonsterList.Count);
 
         Vector3 spawnLocation = Vector3.zero;

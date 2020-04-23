@@ -9,6 +9,7 @@ public class LivingCounterUI : ScriptableObject
     private TextMeshProUGUI tmpMonsterText;
     private int numberOfRoundMonsters;
     private int numberOfLivingMonsters;
+    private int monstersInField;
 
     public void SetTextMeshPro(TextMeshProUGUI tmpMonsterText)
     {
@@ -24,6 +25,7 @@ public class LivingCounterUI : ScriptableObject
 
     public void RemoveMonster()
     {
+        monstersInField--;
         numberOfLivingMonsters--;
         setText();
     }
@@ -36,5 +38,20 @@ public class LivingCounterUI : ScriptableObject
     public int GetLivingMonsters()
     {
         return numberOfLivingMonsters;
+    }
+
+    public void UpMonstersInField()
+    {
+        monstersInField++;
+    }
+
+    public int GetMonstersInField()
+    {
+        return monstersInField;
+    }
+
+    public void SetMonstersInField(int newMonsterAmount)
+    {
+        monstersInField = newMonsterAmount;
     }
 }
